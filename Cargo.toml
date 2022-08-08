@@ -7,9 +7,11 @@ edition = "2021"
 
 [dependencies]
 bn = "0.4.2"
+num-bigint = "0.4.3"
 eth_pairings = { git = "https://github.com/matter-labs/eip1962", rev = "d0569953ec76aeb3a23d401b6693532060e408d6" }
-criterion = {version = "0.3", features = ["html_reports"] }
-pairing_ce = { git = "https://github.com/ConsenSys/pairing", features = ["asm"] }
+criterion = { version = "0.3", features = ["html_reports"] }
+#pairing_ce = { git = "https://github.com/ConsenSys/pairing", features = ["asm"] }
+pairing_ce = { git = "https://github.com/ConsenSys/pairing" }
 rand = "0.4"
 
 [[bench]]
