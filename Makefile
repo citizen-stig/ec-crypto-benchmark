@@ -11,7 +11,9 @@ init-go:
 
 init-cpp:
 	$(CPP) sh ./deps.sh
-	$(CPP) make all
+	$(CPP) cmake --configure .
+	$(CPP) cmake -DCMAKE_BUILD_TYPE=Release
+	$(CPP) cmake --build . -DCMAKE_BUILD_TYPE=Release
 
 init: init-rust init-go init-cpp
 
