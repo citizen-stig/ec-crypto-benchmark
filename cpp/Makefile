@@ -8,6 +8,10 @@ default_target: all
 # Allow only one "make -f Makefile2" at a time, but pass parallelism.
 .NOTPARALLEL:
 
+
+mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
+current_dir := $(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
+
 #=============================================================================
 # Special targets provided by cmake.
 
@@ -48,19 +52,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/local/Cellar/cmake/3.23.2/bin/cmake
+CMAKE_COMMAND = cmake
 
 # The command to remove a file.
-RM = /usr/local/Cellar/cmake/3.23.2/bin/cmake -E rm -f
+RM = cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/ngolub/workspace/my/ec-crypto-benchmark/cpp
+CMAKE_SOURCE_DIR = $(current_dir)
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/ngolub/workspace/my/ec-crypto-benchmark/cpp
+CMAKE_BINARY_DIR = $(current_dir)
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +72,7 @@ CMAKE_BINARY_DIR = /Users/ngolub/workspace/my/ec-crypto-benchmark/cpp
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/local/Cellar/cmake/3.23.2/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,7 +82,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/local/Cellar/cmake/3.23.2/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -87,9 +91,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ngolub/workspace/my/ec-crypto-benchmark/cpp/CMakeFiles /Users/ngolub/workspace/my/ec-crypto-benchmark/cpp//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start CMakeFiles CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ngolub/workspace/my/ec-crypto-benchmark/cpp/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start CMakeFiles 0
 .PHONY : all
 
 # The main clean target

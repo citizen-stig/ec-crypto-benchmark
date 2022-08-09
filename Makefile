@@ -7,13 +7,13 @@ init-rust:
 	$(RUST)	cargo build
 
 init-go:
-	$(GO) go get
+	$(GO) go install
 
 init-cpp:
 	$(CPP) sh ./deps.sh
 	$(CPP) make all
 
-init: init-rust init-go
+init: init-rust init-go init-cpp
 
 # Benches
 bench-rust:
