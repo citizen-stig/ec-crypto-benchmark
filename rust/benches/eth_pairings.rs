@@ -14,9 +14,6 @@ fn mul_eth_pairings(c: &mut Criterion) {
     let max_element = "21888242871839275222246405745257275088548364400416034343698204186575808495616".parse::<BigUint>().unwrap();
     let worst_case_scalar = max_element.to_u64_digits();
 
-    // let worst_case_scalar = [u64::MAX; 4];
-    // println!("WORST SCALAR: {:?}", &worst_case_scalar);
-
     for i in &worst_case_scalar {
         let mut be = i.to_be_bytes().to_vec();
         serialized.append(&mut be);
