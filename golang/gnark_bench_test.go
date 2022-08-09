@@ -1,4 +1,4 @@
-package gnark_bench
+package golang
 
 import (
 	"github.com/consensys/gnark-crypto/ecc/bn254"

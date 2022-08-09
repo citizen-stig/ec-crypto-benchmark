@@ -12,8 +12,8 @@ eth_pairings = { git = "https://github.com/matter-labs/eip1962", rev = "d0569953
 criterion = { version = "0.3", features = ["html_reports"] }
 pairing_ce = { git = "https://github.com/ConsenSys/pairing", features = ["asm"] }
 #pairing_ce = { git = "https://github.com/ConsenSys/pairing" }
-ark-ff = "0.3"
-ark-ec = "0.3"
+ark-ff = { version = "0.3.0", features = [ "asm" ] }
+ark-ec = { version = "0.3.0" }
 ark-bn254 = { version = "0.3", features = ["std"]}
 
 [[bench]]

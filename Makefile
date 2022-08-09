@@ -4,7 +4,7 @@ CPP=cd cpp &&
 
 # Inits
 init-rust:
-	$(RUST)	cargo install
+	$(RUST)	cargo build
 
 init-go:
 	$(GO) go get
