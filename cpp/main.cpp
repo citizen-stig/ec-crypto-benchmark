@@ -9,7 +9,7 @@
 
 static void MCL_BM_BN254_Mul(benchmark::State &state) {
     using namespace mcl;
-    printf("Starting setup\n");
+//    printf("Starting setup\n");
 
     mpz_class s;
     s.setStr("21888242871839275222246405745257275088548364400416034343698204186575808495616");
@@ -21,15 +21,15 @@ static void MCL_BM_BN254_Mul(benchmark::State &state) {
     P1.y.setStr("2");
     P1.z.setStr("1");
 
-    PUT(P1);
+//    PUT(P1);
 
     // Fails
 //    assert(P1.isValid());
     assert(!P1.isZero());
 
-    PUT(P1);
+//    PUT(P1);
 
-    printf("DONE SETUP \n");
+//    printf("DONE SETUP \n");
     for (auto _: state) {
         P2 = P1 * s;
         assert(!P2.isZero());

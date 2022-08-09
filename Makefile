@@ -23,9 +23,9 @@ bench-go:
 	$(GO) go test -bench=.
 
 bench-cpp:
-	($CPP) ./mcl-bench
+	$(CPP) ./mcl_bench
 
-bench: bench-rust bench-go
+bench: bench-rust bench-go bench-cpp
 
 
 # Cleans
@@ -40,4 +40,4 @@ clean-cpp:
 	$(CPP) rm -rf mcl
 	$(CPP) rm -rf benchmark
 
-clean:
+clean: clean-rust clean-go clean-cpp
